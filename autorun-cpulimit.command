@@ -17,7 +17,7 @@ default_application="HandBrakeCLI"
 
 
 echo
-echo "Please enter the Process Name or PID of the process you want to limit"
+echo "Please enter the Process Name of the process you want to limit"
 echo "(in 30 seconds the script will continue with the default setting: $default_application):"
 read -t 30 application
 application="${application:-$default_application}"

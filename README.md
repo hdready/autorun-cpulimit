@@ -1,11 +1,10 @@
-# Video Transcoding Scripts
+# Autorun CPUlimit
 
-Utilities to transcode, inspect and convert videos.
+CPUlimit is a program to limit the CPU usage of a certain process. But CPUlimit stops, as soon as the process stops. In case you have a process that starts on a regular basis, you would have to start CPUlimit each time the process starts over. With this script you only have to enter the process name and it will limit the process each time it starts again. 
 
 ## About
 
 Hi, I'm [Martin Storbeck] (http://storbeck.me). This script was written while transcoding a collection of Blu-ray Discs and DVDs with HandBrake. I needed a CPU limiter for handbrake to reduce fan-noise and heat; it needed to run on startup and had to be easily adjustable. Based on `CPUlimit` I wrote this while-loop which allows you to enter an application and a percentage of CPU-usage (that can be changed at any time).
-
 
 The script was written in [Bash](http://www.gnu.org/software/bash/) and leverages the excellent Open Source and cross-platform software like [CPUlimit](https://github.com/opsengine/cpulimit). Essentially the script is an intelligent wrapper around this tool.
 
@@ -41,9 +40,7 @@ You can start the script using different methods:
 
 It will prompt you to enter an process name or process ID of the application you want to limit. These can be found by opening [activity monitor](http://support.apple.com/en-en/HT201464#cpu) under "Process Name" and "PID". 
 
-You can also find the process ID and process name using terminal, simply type
-
-    ps -ax
+Please note that limiting a process through its PID only works once. when the process is restarted, a new PID will be assigned!
 
 You can enter a new percentage of CPU the process may use at any time after pressing CTRL C
 
