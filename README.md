@@ -4,7 +4,7 @@ Utilities to transcode, inspect and convert videos.
 
 ## About
 
-Hi, I'm [Martin Storbeck] (http://storbeck.me). This script was written while transcoding a collection of Blu-ray Discs and DVDs with HandBrake. I needed a CPU limiter for handbrake to reduce fan-noise and heat; it needed to run on startup and had to be easily adjustable. Based on `cpulimit` I wrote this while-loop which allows you to enter an application and a percentage of CPU-usage (that can be changed at any time).
+Hi, I'm [Martin Storbeck] (http://storbeck.me). This script was written while transcoding a collection of Blu-ray Discs and DVDs with HandBrake. I needed a CPU limiter for handbrake to reduce fan-noise and heat; it needed to run on startup and had to be easily adjustable. Based on `CPUlimit` I wrote this while-loop which allows you to enter an application and a percentage of CPU-usage (that can be changed at any time).
 
 
 The script was written in [Bash](http://www.gnu.org/software/bash/) and leverages the excellent Open Source and cross-platform software like [CPUlimit](https://github.com/opsengine/cpulimit). Essentially the script is an intelligent wrapper around this tool.
@@ -13,7 +13,7 @@ Even if you don't use any of these scripts, you may find their source code or th
 
 ## Requirements
 
-The script works on OS X because that's the platform where it is developed. It requires CPUlimit, which is available via [Homebrew](http://brew.sh).
+The script works on OS X because that's the platform where it is developed. It requires `CPUlimit`, which is available via [Homebrew](http://brew.sh).
 
 CPUlimit can also be [downloaded and installed manually](https://github.com/opsengine/cpulimit).
 
@@ -29,9 +29,25 @@ Download the script and put it wherever you want.  In some cases you might need 
 
 Or simply:
 
-chmod u+x "/folder/where/you/put/the/script/autorun-cpulimit.command"
+    chmod u+x "/folder/where/you/put/the/script/autorun-cpulimit.command"
 
-Start the script by double-click or run it via terminal or put it in Settings -> Users & Groups -> Login Items
+## Using `autorun-cpulimit.command`
+
+You can start the script using different methods:
+
+- double-click 
+- run it via terminal by entering "/folder/where/you put the/script/autorun-cpulimit.command"
+- on a Mac, put it in Settings -> Users & Groups -> Login Items
+
+It will prompt you to enter an process name or process ID of the application you want to limit. These can be found by opening [activity monitor](http://support.apple.com/en-en/HT201464#cpu) under "Process Name" and "PID". 
+
+You can also find the process ID and process name using terminal, simply type
+
+    ps -ax
+
+You can enter a new percentage of CPU the process may use at any time after pressing CTRL C
+
+The script will limit the CPU usage of your process until you close the terminal window. 
 
 ## Default Values
 
