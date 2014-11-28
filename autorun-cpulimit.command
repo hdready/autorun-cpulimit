@@ -17,8 +17,9 @@ default_application="HandBrakeCLI"
 
 
 echo
-echo "What application do you want to limit (default: $HandBrakeCLI)?"
-read -t 15 application
+echo "Please enter the Process Name or PID of the process you want to limit"
+echo "(in 30 seconds the script will continue with the default setting: $default_application):"
+read -t 30 application
 application="${application:-$default_application}"
 echo
 
@@ -70,11 +71,21 @@ fi
 echo "This is $cpu_input% on each of your $number_cpus CPUs."
 echo
 
-# check for process ID
-PID="$(ps -A | grep -m1 $application | awk '{print $1}')"
 
-#set cpulimit
-echo "Press CTRL-C to set a different CPU limit..."
+if ! [[ $application =~ $re ]] ; then
+    # check for process ID
+    PID="$(ps -A | grep -m1 $application | awk '{print $1}')"
+else
+    PID="$application"
+fi
+
+
+#show abort command
+if ! [[ $application =~ $re ]] ; then
+    echo "Press CTRL-C to set a different CPU limit for $application..."
+else
+    echo "Press CTRL-C to set a different CPU limit for PID $application..."
+fi
 cpulimit --pid $PID --limit $cpu_max
 
 echo
